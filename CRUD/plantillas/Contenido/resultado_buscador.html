@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "Base/base.html" %}
+{% csrf_token %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% block title %} Buscadores {% endblock %}
+</head>
+<body>
+
+    {% block content %}
+
+    <br>
+    <h2>Resultado de la Busqueda:</h2>
+
+    {% if resultado %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Carrera</th>
+                    <th colspan="2" >Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in resultado %}
+                    <tr>
+                        <td>{{r.nombre}}</td>
+                        <td>{{r.apellido}}</td>
+                        <td>{{r.fecha}}</td>
+                        <td>{{carrera.nombre}}</td>
+                        <td><a href="#">Modificar</a></td>
+                        <td><a href="#">Eliminar</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+
+        {{mensaje}}
+
+    {% endif %}
+
+    {% endblock %}
+
+</body>
+</html>

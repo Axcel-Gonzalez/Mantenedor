@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "Base/base.html" %}
+{% csrf_token %}
+<html lang="es">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        {% block title %} Menú {% endblock %}
+
+    </head>
+
+    <body> 
+        {% block content %}
+
+        <h2> Menú</h2>
+
+        <a href="/agregar/">Agregar</a>
+        <button>Listar</button>
+        <button>eliminar</button>
+        <a href="/modificar/">Modificar</a>
+
+        {% endblock %}
+    </body> 
+</html>

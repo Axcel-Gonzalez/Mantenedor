@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "Base/base.html" %}
+{% csrf_token %}
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        {% block title %} Buscadores {% endblock %}
+    </head>
+    <body>
+
+        {% block content %}
+        <h2><u><i>Tipos de Buscadores:</i></u></h2>
+
+        <form action="/buscador_nombre/" method="POST">
+            
+            {% csrf_token %}
+            
+            <h3>Buscar por Nombre:</h3>
+
+            <label>Nombre y/o Apellido:</label>
+            <br><br>
+            <input type="text" name="nombre" placeholder="Ej: Pedro">
+            <input type="text" name="apellido" placeholder="Ej:Gutierrez">
+            <br><br>
+            <input type="submit" value="Buscar">
+            
+        </form>
+        <h3>Buscar por Carrera:</h3>
+
+        <label>Nombre de la Carrera:</label>
+        <br><br>
+        <form action="/buscador_carrera/{{c.id}}/" >
+
+            {% for c in carreras %}
+
+                <input type="radio" name="{{c.id}}">
+                <label for="{{c.id}}">{{c.nombre}}</label>
+
+
+            {% endfor %}
+            <input type="submit" value="enviar">
+            <br><br>
+            <select>
+                {% for c in carreras %}
+                    
+                    <label>{{c.id}}</label>
+                    <label>{{c.nombre}}</label>
+                    <option name="{{c.id}}" value="{{c.id}}">{{c.nombre}}</option>
+
+                {% endfor %}
+            </select>
+            <input type="submit" id="{{c.id}}" name="{{c.id}}" value="asd">
+        </form>
+
+        {% endblock %}
+    </body>
+</html>
